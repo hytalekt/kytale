@@ -2,8 +2,9 @@ import org.jreleaser.model.Active
 
 plugins {
     id("buildlogic.common")
-    `maven-publish`
     id("org.jreleaser")
+    id("org.jetbrains.dokka")
+    `maven-publish`
 }
 
 dependencies {
