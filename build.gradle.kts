@@ -77,8 +77,6 @@ tasks.assemble {
 }
 
 jreleaser {
-    dryrun = true
-
     release {
         github {
             repoOwner = "hytalekt"
