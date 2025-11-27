@@ -17,15 +17,16 @@ dependencies {
     implementation(libs.plugin.jreleaser)
 }
 
+// TODO: switch to JVM 25 on Kotlin 2.3.0 release
 java {
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
+    sourceCompatibility = JavaVersion.VERSION_24
+    targetCompatibility = JavaVersion.VERSION_24
 
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(25))
+        languageVersion.set(JavaLanguageVersion.of(24))
     }
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(24)
 }
