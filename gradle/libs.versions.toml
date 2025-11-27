@@ -4,7 +4,7 @@ kotest = "6.0.5"
 
 shadow = "9.2.2"
 dokka = "2.1.0"
-jreleaser = "1.21.0"
+jreleaser = "1.20.0"
 
 [libraries]
 kotest-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }

@@ -77,10 +77,30 @@ tasks.assemble {
 }
 
 jreleaser {
+    dryrun = true
+
+    release {
+        github {
+            repoOwner = "hytalekt"
+            name = "kytale"
+            releaseName = "Kytale {{tagName}}"
+            overwrite = true
+
+            releaseNotes.enabled = true
+            changelog.enabled = false
+
+            prerelease {
+                enabled = true
+                pattern = ".*-(beta|alpha|rc).*"
+            }
+        }
+    }
+
     signing {
         active = Active.ALWAYS
         armored = true
     }
+
     deploy {
         maven {
             mavenCentral {
