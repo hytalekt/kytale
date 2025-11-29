@@ -1,0 +1,20 @@
+name: ✨ Feature request
+description: An feature that can be added to Kytale
+title: "feature: "
+labels: [ "enhancement" ]
+body:
+  - type: textarea
+    attributes:
+      label: Feature description
+      description: A detailed description of the feature being requested.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Anything else?
+      description: |
+        Links? References? Anything that will help us along with the feature.
+        
+        Tip: You can click this area to highlight it and then dragging files in.
+    validations:
+      required: false
