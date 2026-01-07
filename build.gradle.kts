@@ -11,7 +11,10 @@ dependencies {
     testImplementation(libs.bundles.test)
 }
 
-tasks.withType<Test> { useJUnitPlatform() }
+tasks.withType<Test> {
+    useJUnitPlatform()
+    failOnNoDiscoveredTests = false
+}
 
 java { withSourcesJar() }
 
@@ -67,13 +70,16 @@ publishing {
     }
 }
 
-tasks.assemble {
-    doFirst {
-        mkdir(
-            rootProject.layout.buildDirectory
-                .dir("jreleaser"),
-        )
+tasks.register("prepareJReleaser") {
+    val jreleaserDir = layout.buildDirectory.dir("jreleaser")
+    outputs.dir(jreleaserDir)
+    doLast {
+        jreleaserDir.get().asFile.mkdirs()
     }
+}
+
+tasks.assemble {
+    dependsOn("prepareJReleaser")
 }
 
 jreleaser {

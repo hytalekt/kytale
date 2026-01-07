@@ -10,19 +10,18 @@ repositories {
     maven("https://jitpack.io")
 }
 
-// TODO: switch to JVM 25 on Kotlin 2.3.0 release
 java {
     withJavadocJar()
     withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_24
-    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(24))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
 kotlin {
-    jvmToolchain(24)
+    jvmToolchain(25)
 }
