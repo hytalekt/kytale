@@ -17,7 +17,7 @@ dependencies {
     implementation(libs.plugin.jreleaser)
 }
 
-// TODO: switch to JVM 25 on Kotlin 2.3.0 release
+// TODO: after upgrading Gradle to a version that uses embedded Kotlin 2.3.0, use Java 25
 java {
     sourceCompatibility = JavaVersion.VERSION_24
     targetCompatibility = JavaVersion.VERSION_24
