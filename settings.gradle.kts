@@ -11,3 +11,7 @@ plugins {
 }
 
 rootProject.name = "kytale"
+
+include("example")
+include("coroutines")
+include("serialization")

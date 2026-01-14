@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.plugin.shadow)
     implementation(libs.plugin.dokka)
     implementation(libs.plugin.jreleaser)
+    implementation(libs.plugin.kotlinx.serialization)
 }
 
 // TODO: after upgrading Gradle to a version that uses embedded Kotlin 2.3.0, use Java 25
