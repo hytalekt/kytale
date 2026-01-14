@@ -11,3 +11,5 @@ plugins {
 }
 
 rootProject.name = "kytale"
+
+include("example")

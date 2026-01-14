@@ -8,6 +8,7 @@ plugins {
 }
 
 dependencies {
+    compileOnly(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
 }
 
