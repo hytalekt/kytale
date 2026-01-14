@@ -26,7 +26,7 @@ class ExamplePlugin(
     private lateinit var itemsManager: MagicItemsManager
 
     override fun start() {
-        getLogger().at(java.util.logging.Level.INFO).log("Enabling Kytale Example Plugin...")
+        logger.at(java.util.logging.Level.INFO).log("Enabling Kytale Example Plugin...")
 
         // Initialize managers
         npcManager = CustomNpcManager(this)
@@ -41,17 +41,17 @@ class ExamplePlugin(
         // Create example items
         val sword = itemsManager.createLegendarySword()
         val staff = itemsManager.createMagicStaff()
-        getLogger().at(java.util.logging.Level.INFO).log("Created example items")
+        logger.at(java.util.logging.Level.INFO).log("Created example items")
 
-        getLogger().at(java.util.logging.Level.INFO).log("Kytale Example Plugin enabled!")
+        logger.at(java.util.logging.Level.INFO).log("Kytale Example Plugin enabled!")
     }
 
     override fun shutdown() {
-        getLogger().at(java.util.logging.Level.INFO).log("Disabling Kytale Example Plugin...")
+        logger.at(java.util.logging.Level.INFO).log("Disabling Kytale Example Plugin...")
 
         // Cleanup
         npcManager.cleanup()
 
-        getLogger().at(java.util.logging.Level.INFO).log("Kytale Example Plugin disabled!")
+        logger.at(java.util.logging.Level.INFO).log("Kytale Example Plugin disabled!")
     }
 }

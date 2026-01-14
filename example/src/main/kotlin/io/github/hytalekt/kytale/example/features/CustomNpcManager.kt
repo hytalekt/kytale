@@ -52,7 +52,7 @@ class CustomNpcManager(
 
         npcs.add(merchant)
          */
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("Spawned merchant NPC at (" + x + ", " + y + ", " + z + ")")
+        plugin.logger.at(java.util.logging.Level.INFO).log("Spawned merchant NPC at ($x, $y, $z)")
     }
 
     fun spawnGuardNpc(
@@ -60,7 +60,7 @@ class CustomNpcManager(
         y: Double,
         z: Double,
     ) {
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("Spawned guard NPC at (" + x + ", " + y + ", " + z + ")")
+        plugin.logger.at(java.util.logging.Level.INFO).log("Spawned guard NPC at ($x, $y, $z)")
     }
 
     fun spawnQuestGiverNpc(
@@ -68,7 +68,7 @@ class CustomNpcManager(
         y: Double,
         z: Double,
     ) {
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("Spawned quest giver NPC at (" + x + ", " + y + ", " + z + ")")
+        plugin.logger.at(java.util.logging.Level.INFO).log("Spawned quest giver NPC at ($x, $y, $z)")
     }
 
     fun spawnHostileNpc(
@@ -76,7 +76,7 @@ class CustomNpcManager(
         y: Double,
         z: Double,
     ) {
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("Spawned hostile NPC at (" + x + ", " + y + ", " + z + ")")
+        plugin.logger.at(java.util.logging.Level.INFO).log("Spawned hostile NPC at ($x, $y, $z)")
     }
 
     fun cleanup() {
@@ -85,6 +85,6 @@ class CustomNpcManager(
         }
         val count = npcs.size
         npcs.clear()
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("Cleaned up " + count + " NPCs")
+        plugin.logger.at(java.util.logging.Level.INFO).log("Cleaned up $count NPCs")
     }
 }

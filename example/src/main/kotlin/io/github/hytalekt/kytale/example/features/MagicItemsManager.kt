@@ -81,6 +81,6 @@ class MagicItemsManager(
         }
 
     init {
-        plugin.getLogger().at(java.util.logging.Level.INFO).log("MagicItemsManager initialized")
+        plugin.logger.at(java.util.logging.Level.INFO).log("MagicItemsManager initialized")
     }
 }
