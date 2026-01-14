@@ -1,0 +1,64 @@
+name: KytaleExample
+version: 0.1.0
+main: io.github.hytalekt.kytale.example.ExamplePlugin
+description: Example plugin demonstrating Kytale DSL usage
+author: Kytale Team
+
+# Commands defined in this plugin
+commands:
+  give:
+    description: Give yourself an item
+    usage: /give <item> [amount]
+    permission: example.give
+
+  heal:
+    description: Heal yourself
+    usage: /heal
+    permission: example.heal
+
+  admin:
+    description: Admin commands
+    usage: /admin <subcommand>
+    permission: example.admin
+
+  teleport:
+    description: Teleport to coordinates or player
+    usage: /teleport <x> <y> <z>
+    aliases: [tp]
+    permission: example.teleport
+
+  calculate:
+    description: Perform a heavy calculation
+    usage: /calculate [iterations]
+    permission: example.calculate
+
+# Permissions
+permissions:
+  example.*:
+    description: All example plugin permissions
+    children:
+      example.give: true
+      example.heal: true
+      example.admin: true
+      example.teleport: true
+      example.calculate: true
+
+  example.give:
+    description: Allow using the give command
+    default: op
+
+  example.heal:
+    description: Allow using the heal command
+    default: true
+
+  example.admin:
+    description: Allow using admin commands
+    default: op
+
+  example.teleport:
+    description: Allow teleporting
+    default: op
+
+  example.calculate:
+    description: Allow using the calculate command
+    default: true
