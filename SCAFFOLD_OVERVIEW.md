@@ -291,7 +291,7 @@ Each file contains:
 
 To implement these scaffolds:
 
-1. **Understand Hytale APIs** - Study the decompiled Hytale source in `libs/hytale-src/`
+1. **Understand Hytale APIs** - Study the Hytale Server API
 2. **Implement builders** - Replace `TODO()` with actual Hytale API calls
 3. **Test each module** - Create test cases for each DSL
 4. **Add missing features** - Expand based on additional Hytale APIs discovered

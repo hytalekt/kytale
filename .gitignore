@@ -246,4 +246,5 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,git,gradle,kotlin,java,macos,linux,windows
 
-.kotlinlibs/hytale-src/
+.kotlin
+libs/hytale-src/
