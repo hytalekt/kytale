@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture
 /**
  * [KytaleCommand] builder class
  *
- * @param inner The command being built
+ * @param command The command being built
  *
  * @see command
  * @see KytaleCommand
@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture
 @JvmInline
 @KytaleCommandDsl
 value class KytaleCommandBuilder(
-    val inner: KytaleCommand,
+    val command: KytaleCommand,
 ) {
     /**
      * Adds aliases for the command
@@ -33,7 +33,7 @@ value class KytaleCommandBuilder(
      */
     @KytaleCommandDsl
     fun alias(vararg aliases: String) {
-        inner.addAliases(*aliases)
+        command.addAliases(*aliases)
     }
 
     /**
@@ -56,7 +56,7 @@ value class KytaleCommandBuilder(
         argType: ArgumentType<T>,
         defaultValue: T,
         defaultValueDescription: String,
-    ): DefaultArg<T> = inner.withDefaultArg(name, description, argType, defaultValue, defaultValueDescription)
+    ): DefaultArg<T> = command.withDefaultArg(name, description, argType, defaultValue, defaultValueDescription)
 
     /**
      * Adds a wrapped default argument to the command
@@ -78,7 +78,7 @@ value class KytaleCommandBuilder(
         wrapper: ArgWrapper<W, T>,
         defaultValue: T,
         defaultValueDescription: String,
-    ): W = inner.withDefaultArg(name, description, wrapper, defaultValue, defaultValueDescription)
+    ): W = command.withDefaultArg(name, description, wrapper, defaultValue, defaultValueDescription)
 
     /**
      * Adds an optional argument to the command
@@ -96,7 +96,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         argType: ArgumentType<T>,
-    ): OptionalArg<T> = inner.withOptionalArg(name, description, argType)
+    ): OptionalArg<T> = command.withOptionalArg(name, description, argType)
 
     /**
      * Adds a wrapped optional argument to the command
@@ -114,7 +114,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         wrapper: ArgWrapper<W, T>,
-    ): W = inner.withOptionalArg(name, description, wrapper)
+    ): W = command.withOptionalArg(name, description, wrapper)
 
     /**
      * Adds a required argument to the command
@@ -132,7 +132,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         argType: ArgumentType<T>,
-    ): RequiredArg<T> = inner.withRequiredArg(name, description, argType)
+    ): RequiredArg<T> = command.withRequiredArg(name, description, argType)
 
     /**
      * Adds a wrapped required argument to the command
@@ -150,7 +150,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         wrapper: ArgWrapper<W, T>,
-    ): W = inner.withRequiredArg(name, description, wrapper)
+    ): W = command.withRequiredArg(name, description, wrapper)
 
     /**
      * Adds a flag argument to the command
@@ -166,7 +166,7 @@ value class KytaleCommandBuilder(
     fun flagArg(
         name: String,
         description: String,
-    ): FlagArg = inner.withFlagArg(name, description)
+    ): FlagArg = command.withFlagArg(name, description)
 
     /**
      * Adds a list default argument to the command
@@ -188,7 +188,7 @@ value class KytaleCommandBuilder(
         argType: ArgumentType<T>,
         defaultValue: List<T>,
         defaultValueDescription: String,
-    ): DefaultArg<List<T>> = inner.withListDefaultArg(name, description, argType, defaultValue, defaultValueDescription)
+    ): DefaultArg<List<T>> = command.withListDefaultArg(name, description, argType, defaultValue, defaultValueDescription)
 
     /**
      * Adds a list required argument to the command
@@ -206,7 +206,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         argType: ArgumentType<T>,
-    ): RequiredArg<List<T>> = inner.withListRequiredArg(name, description, argType)
+    ): RequiredArg<List<T>> = command.withListRequiredArg(name, description, argType)
 
     /**
      * Adds a list optional argument to the command
@@ -224,7 +224,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         argType: ArgumentType<T>,
-    ): OptionalArg<List<T>> = inner.withListOptionalArg(name, description, argType)
+    ): OptionalArg<List<T>> = command.withListOptionalArg(name, description, argType)
 
     /**
      * Requires a permission for the command
@@ -235,7 +235,7 @@ value class KytaleCommandBuilder(
      */
     @KytaleCommandDsl
     fun requirePermission(permission: String) {
-        inner.requirePermission(permission)
+        command.requirePermission(permission)
     }
 
     /**
@@ -247,7 +247,7 @@ value class KytaleCommandBuilder(
      */
     @KytaleCommandDsl
     fun owner(owner: CommandOwner) {
-        inner.setOwner(owner)
+        command.setOwner(owner)
     }
 
     /**
@@ -266,7 +266,7 @@ value class KytaleCommandBuilder(
         name: String,
         description: String,
         block: KytaleCommandBuilder.() -> Unit,
-    ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).apply(block).inner.also(inner::addSubCommand)
+    ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).apply(block).command.also(command::addSubCommand)
 
     /**
      * Adds a usage variant
@@ -282,7 +282,7 @@ value class KytaleCommandBuilder(
     fun variant(
         description: String,
         block: KytaleCommandBuilder.() -> Unit,
-    ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(null, description)).apply(block).inner.also(inner::addUsageVariant)
+    ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(null, description)).apply(block).command.also(command::addUsageVariant)
 
     /**
      * Sets a synchronous executor for the command
@@ -308,6 +308,6 @@ value class KytaleCommandBuilder(
      */
     @KytaleCommandDsl
     fun executorAsync(block: KytaleCommandContext.(CommandContext) -> CompletableFuture<Void?>?) {
-        inner.defaultExecutor = block
+        command.defaultExecutor = block
     }
 }

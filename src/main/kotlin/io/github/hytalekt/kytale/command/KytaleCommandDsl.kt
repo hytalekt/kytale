@@ -27,4 +27,4 @@ fun command(
     name: String,
     description: String,
     block: KytaleCommandBuilder.() -> Unit,
-): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).inner
+): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).command
