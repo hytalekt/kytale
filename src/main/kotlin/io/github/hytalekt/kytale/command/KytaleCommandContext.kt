@@ -18,7 +18,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
  */
 @JvmInline
 value class KytaleCommandContext(
-    val context: CommandContext,
+    private val context: CommandContext,
 ) {
     /**
      * Gets an argument value from the context

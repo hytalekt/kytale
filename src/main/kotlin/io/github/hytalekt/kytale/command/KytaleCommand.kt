@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture
  * @see KytaleCommandContext
  * @see com.hypixel.hytale.server.core.command.system.AbstractCommand
  */
-class KytaleCommand(
+class KytaleCommand internal constructor(
     name: String?,
     description: String,
     var defaultExecutor: KytaleCommandContext.(CommandContext) -> CompletableFuture<Void?>? = { null },
