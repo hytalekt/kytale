@@ -1,0 +1,261 @@
+$C = "../../Common.ui";
+
+$C.@PageOverlay {
+  $C.@Container {
+    Anchor: (Width: 550, Height: 650);
+
+    #Title {
+      Group {
+        Label {
+          Style: (FontSize: 24, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center);
+          Text: "UI Test - Page 3";
+        }
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Group #NavBar {
+        Padding: (Horizontal: 16, Vertical: 12);
+        LayoutMode: Left;
+        $C.@TextButton #NavPage1 {
+          Anchor: (Height: 36);
+          FlexWeight: 1;
+          Text: "1: Inputs";
+          Style: TextButtonStyle(
+            Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Sounds: $C.@ButtonSounds,
+          );
+        }
+        $C.@TextButton #NavPage2 {
+          Anchor: (Height: 36, Left: 8);
+          FlexWeight: 1;
+          Text: "2: Data";
+          Style: TextButtonStyle(
+            Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Sounds: $C.@ButtonSounds,
+          );
+        }
+        $C.@TextButton #NavPage3 {
+          Anchor: (Height: 36, Left: 8);
+          FlexWeight: 1;
+          Text: "3: Actions";
+          Style: TextButtonStyle(
+            Default: (Background: #c4a23a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Hovered: (Background: #d4b24a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+            Sounds: $C.@ButtonSounds,
+          );
+        }
+      }
+      Group #PageTitle {
+        Padding: (Horizontal: 16, Vertical: 8);
+        Label {
+          Style: (FontSize: 24, TextColor: #ffffff, RenderBold: true);
+          Text: "Actions & Buttons";
+        }
+      }
+      Group #ButtonSection {
+        Padding: (Horizontal: 16, Vertical: 12);
+        LayoutMode: Top;
+        Label {
+          Style: (FontSize: 16, TextColor: #c4a23a, RenderBold: true);
+          Text: "Button Variants";
+        }
+        Group {
+          Padding: (Top: 10);
+          LayoutMode: Left;
+          $C.@TextButton #PrimaryBtn {
+            Anchor: (Width: 90, Height: 36);
+            Text: "Primary";
+            Style: TextButtonStyle(
+              Default: (Background: #c4a23a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #d4b24a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #SecondaryBtn {
+            Anchor: (Width: 90, Height: 36, Left: 8);
+            Text: "Secondary";
+            Style: TextButtonStyle(
+              Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #DangerBtn {
+            Anchor: (Width: 90, Height: 36, Left: 8);
+            Text: "Danger";
+            Style: TextButtonStyle(
+              Default: (Background: #c43a3a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #d44a4a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+        }
+        Group {
+          Padding: (Top: 8);
+          LayoutMode: Left;
+          $C.@TextButton #SuccessBtn {
+            Anchor: (Width: 90, Height: 36);
+            Text: "Success";
+            Style: TextButtonStyle(
+              Default: (Background: #2d5a3d, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #3d7a4d, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #WarningBtn {
+            Anchor: (Width: 90, Height: 36, Left: 8);
+            Text: "Warning";
+            Style: TextButtonStyle(
+              Default: (Background: #8b6914, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #a67c1a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #InfoBtn {
+            Anchor: (Width: 90, Height: 36, Left: 8);
+            Text: "Info";
+            Style: TextButtonStyle(
+              Default: (Background: #2d5a8a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #3d7aba, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+        }
+      }
+      Group #ActionsSection {
+        Padding: (Horizontal: 16, Vertical: 12);
+        LayoutMode: Top;
+        Label {
+          Style: (FontSize: 16, TextColor: #c4a23a, RenderBold: true);
+          Text: "Quick Actions";
+        }
+        Group {
+          Padding: (Top: 10);
+          LayoutMode: Left;
+          $C.@TextButton #ActionNew {
+            Anchor: (Width: 80, Height: 36);
+            Text: "+ New";
+            Style: TextButtonStyle(
+              Default: (Background: #c4a23a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #d4b24a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #ActionImport {
+            Anchor: (Width: 80, Height: 36, Left: 8);
+            Text: "Import";
+            Style: TextButtonStyle(
+              Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #ActionExport {
+            Anchor: (Width: 80, Height: 36, Left: 8);
+            Text: "Export";
+            Style: TextButtonStyle(
+              Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #ActionRefresh {
+            Anchor: (Width: 80, Height: 36, Left: 8);
+            Text: "Refresh";
+            Style: TextButtonStyle(
+              Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+        }
+      }
+      Group #ConfirmSection {
+        Padding: (Horizontal: 16, Vertical: 12);
+        LayoutMode: Top;
+        Label {
+          Style: (FontSize: 16, TextColor: #c4a23a, RenderBold: true);
+          Text: "Confirmation";
+        }
+        Group {
+          Padding: (Top: 10);
+          LayoutMode: Top;
+          Label {
+            Style: (FontSize: 14, TextColor: #ffffff);
+            Text: "Are you sure you want to delete this item?";
+          }
+          Group {
+            Padding: (Top: 10);
+            LayoutMode: Left;
+            $C.@TextButton #ConfirmYes {
+              Anchor: (Width: 110, Height: 36);
+              Text: "Yes, Delete";
+              Style: TextButtonStyle(
+                Default: (Background: #c43a3a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+                Hovered: (Background: #d44a4a, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+                Sounds: $C.@ButtonSounds,
+              );
+            }
+            $C.@TextButton #ConfirmNo {
+              Anchor: (Width: 90, Height: 36, Left: 8);
+              Text: "Cancel";
+              Style: TextButtonStyle(
+                Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+                Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+                Sounds: $C.@ButtonSounds,
+              );
+            }
+          }
+        }
+      }
+      Group #FooterSection {
+        Padding: (Horizontal: 16, Vertical: 12);
+        LayoutMode: Top;
+        Label {
+          Style: (FontSize: 16, TextColor: #c4a23a, RenderBold: true);
+          Text: "Form Actions";
+        }
+        Group {
+          Padding: (Top: 10);
+          LayoutMode: Left;
+          $C.@TextButton #ResetButton {
+            Anchor: (Height: 40);
+            FlexWeight: 1;
+            Text: "Reset";
+            Style: TextButtonStyle(
+              Default: (Background: #1a2636, LabelStyle: (FontSize: 14, TextColor: #bfcdd5, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #243448, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #ApplyButton {
+            Anchor: (Height: 40, Left: 8);
+            FlexWeight: 1;
+            Text: "Apply";
+            Style: TextButtonStyle(
+              Default: (Background: #2d5a3d, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #3d7a4d, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+          $C.@TextButton #SaveButton {
+            Anchor: (Height: 40, Left: 8);
+            FlexWeight: 2;
+            Text: "Save";
+            Style: TextButtonStyle(
+              Default: (Background: #c4a23a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Hovered: (Background: #d4b24a, LabelStyle: (FontSize: 14, TextColor: #121a26, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+              Sounds: $C.@ButtonSounds,
+            );
+          }
+        }
+      }
+    }
+  }
+}
+
+$C.@BackButton {}
