@@ -5,6 +5,7 @@ plugins {
 dependencies {
     compileOnly(files("../libs/HytaleServer.jar"))
     compileOnly(libs.kotlinx.coroutines.core)
+    compileOnly(project(":"))
 
     testImplementation(libs.bundles.test)
 }
