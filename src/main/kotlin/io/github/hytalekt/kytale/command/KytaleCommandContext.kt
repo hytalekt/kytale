@@ -9,20 +9,53 @@ import com.hypixel.hytale.server.core.command.system.arguments.types.EntityWrapp
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 
+/**
+ * A command context wrapper that provides convenient argument accessors
+ *
+ * @param context The underlying command context
+ *
+ * @see com.hypixel.hytale.server.core.command.system.CommandContext
+ */
 @JvmInline
 value class KytaleCommandContext(
     val context: CommandContext,
 ) {
+    /**
+     * Gets an argument value from the context
+     *
+     * @see com.hypixel.hytale.server.core.command.system.CommandContext.get
+     */
     @KytaleCommandDsl
     operator fun <A : Argument<A, T>, T> Argument<A, T>.invoke(): T = context.get(this)
 
+    /**
+     * Unwraps a wrapped argument
+     *
+     * @see com.hypixel.hytale.server.core.command.system.arguments.system.WrappedArg.arg
+     */
     @KytaleCommandDsl
     operator fun <T> WrappedArg<T>.invoke(): T = this.arg()
 
+    /**
+     * Gets an entity from a wrapped argument using a component accessor
+     *
+     * @param componentAccessor The component accessor for entity stores
+     * @return The entity reference, or null if not found
+     *
+     * @see com.hypixel.hytale.server.core.command.system.arguments.types.EntityWrappedArg.get
+     */
     @KytaleCommandDsl
     operator fun EntityWrappedArg.invoke(componentAccessor: ComponentAccessor<EntityStore>): Ref<EntityStore>? =
         get(componentAccessor, context)
 
+    /**
+     * Gets an entity directly from a wrapped argument using a world
+     *
+     * @param world The world containing the entity
+     * @return The entity reference, or null if not found
+     *
+     * @see com.hypixel.hytale.server.core.command.system.arguments.types.EntityWrappedArg.getEntityDirectly
+     */
     @KytaleCommandDsl
     fun EntityWrappedArg.getEntityDirectly(world: World): Ref<EntityStore>? = getEntityDirectly(context, world)
 }

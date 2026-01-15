@@ -9,6 +9,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.future.asCompletableFuture
 
+/**
+ * Sets a coroutine-based executor for the command
+ *
+ * Allows using suspending functions as command executors by running them in a coroutine scope
+ * and converting the result to a CompletableFuture.
+ *
+ * @param scope The coroutine scope to run in, defaults to Dispatchers.Default
+ * @param block The suspending executor block
+ *
+ * @see KytaleCommandBuilder.executorAsync
+ */
 @KytaleCommandDsl
 inline fun KytaleCommandBuilder.executorCoroutine(
     scope: CoroutineScope = CoroutineScope(Dispatchers.Default),

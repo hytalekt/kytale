@@ -4,6 +4,16 @@ import com.hypixel.hytale.server.core.command.system.AbstractCommand
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import java.util.concurrent.CompletableFuture
 
+/**
+ * A command wrapper that provides [KytaleCommandContext] to executors
+ *
+ * @param name The command name, or null for variants
+ * @param description The command description
+ * @param defaultExecutor The command executor function
+ *
+ * @see KytaleCommandContext
+ * @see com.hypixel.hytale.server.core.command.system.AbstractCommand
+ */
 class KytaleCommand(
     name: String?,
     description: String,
