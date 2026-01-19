@@ -1,0 +1,23 @@
+{
+  "Version": 3,
+  "ServerName": "Hytale Server",
+  "MOTD": "",
+  "Password": "",
+  "MaxPlayers": 100,
+  "MaxViewRadius": 32,
+  "Defaults": {
+    "World": "default",
+    "GameMode": "Adventure"
+  },
+  "ConnectionTimeouts": {
+    "JoinTimeouts": {}
+  },
+  "RateLimit": {},
+  "Modules": {},
+  "LogLevels": {},
+  "Mods": {},
+  "DisplayTmpTagsInStrings": false,
+  "PlayerStorage": {
+    "Type": "Hytale"
+  }
+}

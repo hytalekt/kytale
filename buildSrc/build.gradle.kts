@@ -18,16 +18,15 @@ dependencies {
     implementation(libs.plugin.kotlinx.serialization)
 }
 
-// TODO: after upgrading Gradle to a version that uses embedded Kotlin 2.3.0, use Java 25
 java {
-    sourceCompatibility = JavaVersion.VERSION_24
-    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(24))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
 kotlin {
-    jvmToolchain(24)
+    jvmToolchain(25)
 }

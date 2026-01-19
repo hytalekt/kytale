@@ -2,6 +2,7 @@ import org.jreleaser.model.Active
 
 plugins {
     id("buildlogic.common")
+    kotlin("plugin.serialization")
     id("org.jreleaser")
     id("org.jetbrains.dokka")
     `maven-publish`
@@ -11,13 +12,32 @@ dependencies {
     // TODO: setup downloading of the server jar
     compileOnly(files("./libs/HytaleServer.jar"))
 
+    // Kotlinx dependencies for coroutines and serialization
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.serialization.json)
+
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
     failOnNoDiscoveredTests = false
+}
+
+// Root-level task that runs integration tests on the Hytale server
+tasks.register("integrationTests") {
+    group = "verification"
+    description = "Run integration tests on the Hytale server"
+    dependsOn(":tests:tests")
+}
+
+// Aggregate task that runs all tests (unit + integration)
+tasks.register("allTests") {
+    group = "verification"
+    description = "Run all unit and integration tests"
+    dependsOn("test", ":tests:tests")
 }
 
 java { withSourcesJar() }
