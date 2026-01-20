@@ -1,6 +1,5 @@
 plugins {
     id("buildlogic.common")
-    id("io.github.hytalekt.kytale")
     id("com.gradleup.shadow")
 }
 
@@ -8,11 +7,6 @@ plugins {
 tasks.shadowJar {
     archiveClassifier.set("") // Remove "-all" suffix
     mergeServiceFiles()
-}
-
-kytale {
-    allowOp.set(true) // Enable /op for testing
-    hytaleHome.set(file("D:/Roaming")) // Custom Hytale installation location
 }
 
 dependencies {
