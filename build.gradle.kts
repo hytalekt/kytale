@@ -8,8 +8,7 @@ plugins {
 }
 
 dependencies {
-    // TODO: setup downloading of the server jar
-    compileOnly(files("./libs/HytaleServer.jar"))
+    compileOnly(libs.hytale.stubs)
 
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)

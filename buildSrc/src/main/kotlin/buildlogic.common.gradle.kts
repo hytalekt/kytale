@@ -7,6 +7,7 @@ version = "0.1.0-alpha.0"
 
 repositories {
     mavenCentral()
+    maven("https://stubs.oglass.dev/repository")
     maven("https://jitpack.io")
 }
 

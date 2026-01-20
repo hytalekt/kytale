@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies {
-    compileOnly(files("../libs/HytaleServer.jar"))
+    compileOnly(libs.hytale.stubs)
+
     implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.bundles.test)
 }

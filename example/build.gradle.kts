@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly(files("../libs/HytaleServer.jar"))
+    compileOnly(libs.hytale.stubs)
     implementation(project(":"))
     implementation(project(":coroutines"))
     implementation(project(":serialization"))
