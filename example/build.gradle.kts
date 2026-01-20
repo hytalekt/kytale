@@ -4,10 +4,11 @@ plugins {
 
 dependencies {
     compileOnly(files("../libs/HytaleServer.jar"))
-    compileOnly(libs.kotlinx.coroutines.core)
+    implementation(project(":"))
+    implementation(project(":coroutines"))
+    implementation(project(":serialization"))
 
     testImplementation(libs.bundles.test)
-    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 tasks.withType<Test> {

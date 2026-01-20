@@ -25,7 +25,6 @@ import java.util.concurrent.Executors
  * ```
  */
 object HytaleDispatchers {
-
     @Volatile
     private var mainExecutor: Executor? = null
 
@@ -65,11 +64,12 @@ object HytaleDispatchers {
      * without blocking the main thread.
      */
     val Single: CoroutineDispatcher by lazy {
-        Executors.newSingleThreadExecutor { runnable ->
-            Thread(runnable, "HyKot-Single").apply {
-                isDaemon = true
-            }
-        }.asCoroutineDispatcher()
+        Executors
+            .newSingleThreadExecutor { runnable ->
+                Thread(runnable, "HyKot-Single").apply {
+                    isDaemon = true
+                }
+            }.asCoroutineDispatcher()
     }
 
     /**
@@ -103,7 +103,5 @@ object HytaleDispatchers {
      * @return a dispatcher bound to the world's execution context
      */
     @JvmStatic
-    fun forWorld(worldExecutor: Executor): CoroutineDispatcher {
-        return worldExecutor.asCoroutineDispatcher()
-    }
+    fun forWorld(worldExecutor: Executor): CoroutineDispatcher = worldExecutor.asCoroutineDispatcher()
 }

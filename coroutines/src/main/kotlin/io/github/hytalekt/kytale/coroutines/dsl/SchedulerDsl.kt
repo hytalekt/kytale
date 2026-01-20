@@ -1,4 +1,4 @@
-package io.github.hytalekt.kytale.dsl
+package io.github.hytalekt.kytale.coroutines.dsl
 
 import io.github.hytalekt.kytale.coroutines.HytaleDispatchers
 import kotlinx.coroutines.CoroutineScope
@@ -6,6 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -25,11 +26,12 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 fun CoroutineScope.schedule(
     delay: Duration,
-    block: suspend () -> Unit
-): Job = launch(HytaleDispatchers.Async) {
-    delay(delay)
-    block()
-}
+    block: suspend () -> Unit,
+): Job =
+    launch(HytaleDispatchers.Async) {
+        delay(delay)
+        block()
+    }
 
 /**
  * Schedules a repeating task.
@@ -57,14 +59,15 @@ fun CoroutineScope.schedule(
 fun CoroutineScope.scheduleRepeating(
     delay: Duration = Duration.ZERO,
     period: Duration,
-    block: suspend () -> Unit
-): Job = launch(HytaleDispatchers.Async) {
-    delay(delay)
-    while (isActive) {
-        block()
-        delay(period)
+    block: suspend () -> Unit,
+): Job =
+    launch(HytaleDispatchers.Async) {
+        delay(delay)
+        while (isActive) {
+            block()
+            delay(period)
+        }
     }
-}
 
 /**
  * Schedules a task to run on the main thread after a delay.
@@ -75,13 +78,14 @@ fun CoroutineScope.scheduleRepeating(
  */
 fun CoroutineScope.scheduleOnMain(
     delay: Duration,
-    block: suspend () -> Unit
-): Job = launch(HytaleDispatchers.Async) {
-    delay(delay)
-    kotlinx.coroutines.withContext(HytaleDispatchers.Main) {
-        block()
+    block: suspend () -> Unit,
+): Job =
+    launch(HytaleDispatchers.Async) {
+        delay(delay)
+        withContext(HytaleDispatchers.Main) {
+            block()
+        }
     }
-}
 
 /**
  * Schedules a repeating task on the main thread.
@@ -94,16 +98,17 @@ fun CoroutineScope.scheduleOnMain(
 fun CoroutineScope.scheduleRepeatingOnMain(
     delay: Duration = Duration.ZERO,
     period: Duration,
-    block: suspend () -> Unit
-): Job = launch(HytaleDispatchers.Async) {
-    delay(delay)
-    while (isActive) {
-        kotlinx.coroutines.withContext(HytaleDispatchers.Main) {
-            block()
+    block: suspend () -> Unit,
+): Job =
+    launch(HytaleDispatchers.Async) {
+        delay(delay)
+        while (isActive) {
+            withContext(HytaleDispatchers.Main) {
+                block()
+            }
+            delay(period)
         }
-        delay(period)
     }
-}
 
 /**
  * Schedules a task using tick-based timing.
@@ -125,7 +130,7 @@ fun CoroutineScope.scheduleRepeatingOnMain(
 fun CoroutineScope.scheduleInTicks(
     delay: Int,
     tps: Int = 30,
-    block: suspend () -> Unit
+    block: suspend () -> Unit,
 ): Job {
     val delayMs = (delay * 1000L / tps).milliseconds
     return schedule(delayMs, block)
@@ -144,7 +149,7 @@ fun CoroutineScope.scheduleRepeatingInTicks(
     delay: Int = 0,
     period: Int,
     tps: Int = 30,
-    block: suspend () -> Unit
+    block: suspend () -> Unit,
 ): Job {
     val delayMs = (delay * 1000L / tps).milliseconds
     val periodMs = (period * 1000L / tps).milliseconds
@@ -157,8 +162,7 @@ fun CoroutineScope.scheduleRepeatingInTicks(
  * @param block the task to execute
  * @return a Job representing the running task
  */
-fun CoroutineScope.async(block: suspend () -> Unit): Job =
-    launch(HytaleDispatchers.Async) { block() }
+fun CoroutineScope.async(block: suspend () -> Unit): Job = launch(HytaleDispatchers.Async) { block() }
 
 /**
  * Runs a task immediately on the main thread.
@@ -166,8 +170,7 @@ fun CoroutineScope.async(block: suspend () -> Unit): Job =
  * @param block the task to execute
  * @return a Job representing the running task
  */
-fun CoroutineScope.sync(block: suspend () -> Unit): Job =
-    launch(HytaleDispatchers.Main) { block() }
+fun CoroutineScope.sync(block: suspend () -> Unit): Job = launch(HytaleDispatchers.Main) { block() }
 
 /**
  * Converts ticks to a Duration.

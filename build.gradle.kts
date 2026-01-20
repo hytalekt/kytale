@@ -2,7 +2,6 @@ import org.jreleaser.model.Active
 
 plugins {
     id("buildlogic.common")
-    kotlin("plugin.serialization")
     id("org.jreleaser")
     id("org.jetbrains.dokka")
     `maven-publish`
@@ -12,13 +11,8 @@ dependencies {
     // TODO: setup downloading of the server jar
     compileOnly(files("./libs/HytaleServer.jar"))
 
-    // Kotlinx dependencies for coroutines and serialization
-    api(libs.kotlinx.coroutines.core)
-    api(libs.kotlinx.serialization.json)
-
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
-    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 tasks.withType<Test> {
