@@ -15,6 +15,7 @@ rootProject.name = "kytale"
 // Include the gradle plugin for composite builds
 includeBuild("gradle-plugin")
 
+include("example")
 include("tests")
 include("coroutines")
 include("serialization")
