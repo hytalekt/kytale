@@ -13,12 +13,10 @@ dependencies {
     compileOnly(files("./libs/HytaleServer.jar"))
 
     // Kotlinx dependencies for coroutines and serialization
-    api(libs.kotlinx.coroutines.core)
     api(libs.kotlinx.serialization.json)
 
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
-    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 tasks.withType<Test> {

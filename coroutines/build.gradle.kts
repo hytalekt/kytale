@@ -7,6 +7,7 @@ dependencies {
     compileOnly(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.bundles.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 tasks.withType<Test> {
