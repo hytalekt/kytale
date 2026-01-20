@@ -20,6 +20,20 @@ tasks.withType<Test> {
     failOnNoDiscoveredTests = false
 }
 
+// Root-level task that runs integration tests on the Hytale server
+tasks.register("integrationTests") {
+    group = "verification"
+    description = "Run integration tests on the Hytale server"
+    dependsOn(":tests:tests")
+}
+
+// Aggregate task that runs all tests (unit + integration)
+tasks.register("allTests") {
+    group = "verification"
+    description = "Run all unit and integration tests"
+    dependsOn("test", ":tests:tests")
+}
+
 java { withSourcesJar() }
 
 publishing {

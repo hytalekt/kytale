@@ -248,3 +248,6 @@ gradle-app.setting
 
 .kotlin
 libs/hytale-src
+
+# IDE settings
+.vscode/

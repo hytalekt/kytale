@@ -1,41 +1,27 @@
 plugins {
-    kotlin("jvm") version "2.2.0"
-    kotlin("plugin.serialization") version "2.2.0"
-    id("hytale-mod") version "0.+"
+    id("buildlogic.common")
+    kotlin("plugin.serialization")
     `maven-publish`
-}
-
-group = "aster.amo.hexweave"
-version = "1.4.4"
-val javaVersion = 25
-
-repositories {
-    mavenCentral()
-    maven("https://maven.hytale-modding.info/releases") {
-        name = "HytaleModdingReleases"
-    }
 }
 
 dependencies {
     api(project(":"))
 
+    compileOnly(files("../libs/HytaleServer.jar"))
+
     compileOnly(libs.jetbrains.annotations)
     compileOnly(libs.jspecify)
+
+    testImplementation(files("../libs/HytaleServer.jar"))
+    testImplementation(libs.bundles.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(javaVersion)
-    }
-
-    withSourcesJar()
+tasks.withType<Test> {
+    useJUnitPlatform()
+    failOnNoDiscoveredTests = false
 }
-
-kotlin {
-    jvmToolchain(javaVersion)
-}
-
-hytale { }
 
 tasks.withType<Jar> {
     archiveBaseName.set("hexweave")
@@ -50,16 +36,16 @@ tasks.withType<Jar> {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "aster.amo"
-            artifactId = "hexweave"
+            groupId = "io.github.hytalekt"
+            artifactId = "kytale-hexweave"
             version = project.version.toString()
 
             from(components["java"])
 
             pom {
-                name.set("Hexweave")
+                name.set("Kytale Hexweave")
                 description.set("Helper layer for Kytale - player events, commands, tasks, and ECS systems")
-                url.set("https://github.com/AmoAster/Kytale")
+                url.set("https://github.com/hytalekt/kytale")
 
                 licenses {
                     license {
@@ -67,22 +53,28 @@ publishing {
                         url.set("https://opensource.org/licenses/MIT")
                     }
                 }
+
+                developers {
+                    developer {
+                        id.set("hytalekt")
+                        name.set("HytaleKT")
+                    }
+                    developer {
+                        id.set("amoaster")
+                        name.set("AmoAster")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/hytalekt/kytale.git")
+                    developerConnection.set("scm:git:ssh://github.com/hytalekt/kytale.git")
+                    url.set("https://github.com/hytalekt/kytale")
+                }
             }
         }
     }
 
     repositories {
         mavenLocal()
-        maven {
-            name = "PokeSkies"
-            url = uri("https://maven.pokeskies.com/releases")
-            credentials {
-                username = project.findProperty("pokeskiesUsername") as String? ?: System.getenv("POKESKIES_USERNAME")
-                password = project.findProperty("pokeskiesPassword") as String? ?: System.getenv("POKESKIES_PASSWORD")
-            }
-            authentication {
-                create("basic", BasicAuthentication::class.java)
-            }
-        }
     }
 }

@@ -1,8 +1,11 @@
 [versions]
 kotlin = "2.3.0"
 kotest = "6.0.5"
+mockk = "1.13.16"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.10.0-RC"
+jetbrains-annotations = "26.0.2"
+jspecify = "1.0.0"
 
 shadow = "9.2.2"
 dokka = "2.1.0"
@@ -11,8 +14,13 @@ jreleaser = "1.20.0"
 [libraries]
 kotest-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 kotest-junit = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+
+jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-annotations" }
+jspecify = { group = "org.jspecify", name = "jspecify", version.ref = "jspecify" }
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -22,4 +30,7 @@ plugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", versi
 plugin-dokka = { module = "org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin", version.ref = "dokka" }
 
 [bundles]
-test = ["kotest-core", "kotest-junit"]
+test = ["kotest-core", "kotest-junit", "mockk"]
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
