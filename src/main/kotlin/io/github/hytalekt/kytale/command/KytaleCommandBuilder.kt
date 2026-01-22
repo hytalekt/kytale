@@ -31,7 +31,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.addAliases
      */
-    @KytaleCommandDsl
     fun alias(vararg aliases: String) {
         command.addAliases(*aliases)
     }
@@ -49,7 +48,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withDefaultArg
      */
-    @KytaleCommandDsl
     fun <T> defaultArg(
         name: String,
         description: String,
@@ -71,7 +69,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withDefaultArg
      */
-    @KytaleCommandDsl
     fun <W : WrappedArg<T>, T> defaultArg(
         name: String,
         description: String,
@@ -91,7 +88,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withOptionalArg
      */
-    @KytaleCommandDsl
     fun <T> optionalArg(
         name: String,
         description: String,
@@ -109,7 +105,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withOptionalArg
      */
-    @KytaleCommandDsl
     fun <W : WrappedArg<T>, T> optionalArg(
         name: String,
         description: String,
@@ -127,7 +122,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withRequiredArg
      */
-    @KytaleCommandDsl
     fun <T> requiredArg(
         name: String,
         description: String,
@@ -145,7 +139,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withRequiredArg
      */
-    @KytaleCommandDsl
     fun <W : WrappedArg<T>, T> requiredArg(
         name: String,
         description: String,
@@ -162,7 +155,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withFlagArg
      */
-    @KytaleCommandDsl
     fun flagArg(
         name: String,
         description: String,
@@ -181,7 +173,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withListDefaultArg
      */
-    @KytaleCommandDsl
     fun <T> listDefaultArg(
         name: String,
         description: String,
@@ -201,7 +192,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withListRequiredArg
      */
-    @KytaleCommandDsl
     fun <T> listRequiredArg(
         name: String,
         description: String,
@@ -219,7 +209,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.withListOptionalArg
      */
-    @KytaleCommandDsl
     fun <T> listOptionalArg(
         name: String,
         description: String,
@@ -233,7 +222,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.requirePermission
      */
-    @KytaleCommandDsl
     fun requirePermission(permission: String) {
         command.requirePermission(permission)
     }
@@ -245,7 +233,6 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.setOwner
      */
-    @KytaleCommandDsl
     fun owner(owner: CommandOwner) {
         command.setOwner(owner)
     }
@@ -261,11 +248,10 @@ value class KytaleCommandBuilder(
      *
      * @see com.hypixel.hytale.server.core.command.system.AbstractCommand.addSubCommand
      */
-    @KytaleCommandDsl
     fun subcommand(
         name: String,
         description: String,
-        block: KytaleCommandBuilder.() -> Unit,
+        block: @KytaleCommandDsl KytaleCommandBuilder.() -> Unit,
     ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).apply(block).command.also(command::addSubCommand)
 
     /**
@@ -281,7 +267,7 @@ value class KytaleCommandBuilder(
     @KytaleCommandDsl
     fun variant(
         description: String,
-        block: KytaleCommandBuilder.() -> Unit,
+        block: @KytaleCommandDsl KytaleCommandBuilder.() -> Unit,
     ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(null, description)).apply(block).command.also(command::addUsageVariant)
 
     /**
@@ -292,7 +278,7 @@ value class KytaleCommandBuilder(
      * @see executorAsync
      */
     @KytaleCommandDsl
-    inline fun executorSync(crossinline block: KytaleCommandContext.(CommandContext) -> Unit) {
+    inline fun executorSync(crossinline block: @KytaleCommandDsl KytaleCommandContext.(CommandContext) -> Unit) {
         executorAsync { context ->
             this.block(context)
             null
@@ -307,7 +293,7 @@ value class KytaleCommandBuilder(
      * @see executorSync
      */
     @KytaleCommandDsl
-    fun executorAsync(block: KytaleCommandContext.(CommandContext) -> CompletableFuture<Void?>?) {
+    fun executorAsync(block: @KytaleCommandDsl KytaleCommandContext.(CommandContext) -> CompletableFuture<Void?>?) {
         command.defaultExecutor = block
     }
 }

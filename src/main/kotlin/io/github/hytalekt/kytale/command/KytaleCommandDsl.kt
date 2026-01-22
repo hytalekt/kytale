@@ -22,9 +22,8 @@ annotation class KytaleCommandDsl
  * @see KytaleCommandBuilder
  * @see com.hypixel.hytale.server.core.command.system.AbstractCommand
  */
-@KytaleCommandDsl
 fun command(
     name: String,
     description: String,
-    block: KytaleCommandBuilder.() -> Unit,
+    block: @KytaleCommandDsl KytaleCommandBuilder.() -> Unit,
 ): KytaleCommand = KytaleCommandBuilder(KytaleCommand(name, description)).apply(block).command

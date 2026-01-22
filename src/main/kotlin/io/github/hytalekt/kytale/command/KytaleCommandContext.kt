@@ -17,6 +17,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
  * @see com.hypixel.hytale.server.core.command.system.CommandContext
  */
 @JvmInline
+@KytaleCommandDsl
 value class KytaleCommandContext(
     private val context: CommandContext,
 ) {
@@ -25,7 +26,6 @@ value class KytaleCommandContext(
      *
      * @see com.hypixel.hytale.server.core.command.system.CommandContext.get
      */
-    @KytaleCommandDsl
     operator fun <A : Argument<A, T>, T> Argument<A, T>.invoke(): T = context.get(this)
 
     /**
@@ -33,7 +33,6 @@ value class KytaleCommandContext(
      *
      * @see com.hypixel.hytale.server.core.command.system.arguments.system.WrappedArg.arg
      */
-    @KytaleCommandDsl
     operator fun <T> WrappedArg<T>.invoke(): T = this.arg()
 
     /**
@@ -44,7 +43,6 @@ value class KytaleCommandContext(
      *
      * @see com.hypixel.hytale.server.core.command.system.arguments.types.EntityWrappedArg.get
      */
-    @KytaleCommandDsl
     operator fun EntityWrappedArg.invoke(componentAccessor: ComponentAccessor<EntityStore>): Ref<EntityStore>? =
         get(componentAccessor, context)
 
@@ -56,6 +54,5 @@ value class KytaleCommandContext(
      *
      * @see com.hypixel.hytale.server.core.command.system.arguments.types.EntityWrappedArg.getEntityDirectly
      */
-    @KytaleCommandDsl
     fun EntityWrappedArg.getEntityDirectly(world: World): Ref<EntityStore>? = getEntityDirectly(context, world)
 }
