@@ -1,12 +1,13 @@
 plugins {
-    id("buildlogic.hytale")
+    id("buildlogic.common")
 }
 
 dependencies {
+    compileOnly(libs.hytale)
     compileOnly(libs.kotlinx.coroutines.core)
     compileOnly(project(":"))
 
-    testImplementation(files("../libs/HytaleServer.jar"))
+    testImplementation(libs.hytale)
     testImplementation(libs.bundles.test)
     testImplementation(libs.kotlinx.coroutines.core)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")

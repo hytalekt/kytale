@@ -1,10 +1,12 @@
 plugins {
-    id("buildlogic.hytale")
+    id("buildlogic.common")
     kotlin("plugin.serialization")
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
+    compileOnly(libs.hytale)
+    api(libs.kotlinx.serialization.core)
+
     testImplementation(libs.bundles.test)
 }
 

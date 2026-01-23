@@ -1,8 +1,9 @@
 plugins {
-    id("buildlogic.hytale")
+    id("buildlogic.common")
 }
 
 dependencies {
+    implementation(libs.hytale)
     implementation(project(":"))
     implementation(project(":coroutines"))
     implementation(project(":serialization"))

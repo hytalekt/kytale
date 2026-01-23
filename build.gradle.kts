@@ -1,14 +1,16 @@
 import org.jreleaser.model.Active
 
 plugins {
-    id("buildlogic.hytale")
+    id("buildlogic.common")
     id("org.jreleaser")
     id("org.jetbrains.dokka")
     `maven-publish`
 }
 
 dependencies {
-    testImplementation(files("./libs/HytaleServer.jar"))
+    compileOnly(libs.hytale)
+
+    testImplementation(libs.hytale)
     testImplementation(libs.bundles.test)
 
     dokka(project(":"))

@@ -9,6 +9,7 @@ version = "0.1.0-alpha.0"
 repositories {
     mavenCentral()
     maven("https://jitpack.io")
+    maven("https://maven.hytale.com/pre-release")
 }
 
 java {
