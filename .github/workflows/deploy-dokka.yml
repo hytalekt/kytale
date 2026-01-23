@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: 25
+          java-version: 24
           distribution: temurin
 
       - name: Grant execute permission for gradlew
