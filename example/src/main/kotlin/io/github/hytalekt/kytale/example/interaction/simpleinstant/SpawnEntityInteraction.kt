@@ -1,5 +1,6 @@
 package io.github.hytalekt.kytale.example.interaction.simpleinstant
 
+import com.hypixel.hytale.codec.Codec
 import com.hypixel.hytale.component.AddReason
 import com.hypixel.hytale.math.shape.Box
 import com.hypixel.hytale.math.vector.Vector3d
@@ -22,6 +23,18 @@ import io.github.hytalekt.kytale.interaction.simpleInstantInteraction
 val SpawnEntityInteraction = simpleInstantInteraction(
     interactionId = "SpawnEntity",
 ) {
+    var distance = 5.0
+
+    codec {
+        documentation = """
+            Spawn Entity Interaction: Spawns a block entity with a specified model or block type in front of the player.
+        """.trimIndent()
+
+        addField("Distance", Codec.DOUBLE) {
+            getter { distance }
+            setter { distance = it }
+        }
+    }
     firstRun { type, context, cooldownHandler ->
         val commandBuffer =
             context.commandBuffer ?: return@firstRun
@@ -43,7 +56,7 @@ val SpawnEntityInteraction = simpleInstantInteraction(
             ) ?: return@execute
 
             val entityTransform = playerTransform.clone().also {
-                it.position.add(5.0, 0.0, 0.0)
+                it.position.add(distance, 0.0, 0.0)
             }
 
             val timeResource: TimeResource =

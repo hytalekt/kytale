@@ -30,7 +30,7 @@ import com.hypixel.hytale.server.core.universe.world.meta.state.ItemContainerSta
 import io.github.hytalekt.kytale.interaction.simpleBlockInteraction
 import io.github.hytalekt.kytale.message.text
 
-val DumpContainerInteraction = simpleBlockInteraction("Marucs_DumpContainer") {
+val DumpContainerInteraction = simpleBlockInteraction("DumpContainer") {
     interactWithBlock { world, commandBuffer, type, context, stack, pos, handler ->
         val ref = context.entity
         val player = commandBuffer.getComponent(ref, Player.getComponentType()) ?: return@interactWithBlock
