@@ -13,6 +13,10 @@ dependencies {
 
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
+
+    dokka(project(":"))
+    dokka(project(":serialization"))
+    dokka(project(":coroutines"))
 }
 
 tasks.withType<Test> {

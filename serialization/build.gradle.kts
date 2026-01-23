@@ -9,6 +9,10 @@ dependencies {
     testImplementation(libs.bundles.test)
 }
 
+dokka {
+    moduleName = "kytale-serialization"
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
     failOnNoDiscoveredTests = false

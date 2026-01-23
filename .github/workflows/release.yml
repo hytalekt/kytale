@@ -31,5 +31,7 @@ jobs:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew --no-configuration-cache jreleaserPrepare jreleaserFullRelease
-      - name: Deploy Dokka docs
-        uses: ./.github/workflows/deploy-dokka.yml
+
+  deploy-docs:
+    needs: release
+    uses: ./.github/workflows/deploy-dokka.yml

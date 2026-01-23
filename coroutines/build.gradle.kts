@@ -14,6 +14,10 @@ dependencies {
     testImplementation(project(":"))
 }
 
+dokka {
+    moduleName = "kytale-coroutines"
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
     failOnNoDiscoveredTests = false
