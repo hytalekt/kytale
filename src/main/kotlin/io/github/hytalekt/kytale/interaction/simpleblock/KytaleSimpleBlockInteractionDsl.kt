@@ -14,9 +14,9 @@ inline fun internalSimpleBlockInteraction(
 ): KytaleInteractionBundle<SimpleBlockInteraction> {
     val delegatedInteraction = createDelegatedSimpleBlockInteraction()
 
-    val codecBuilder = newCodecBuilder(
+    val codecBuilder = newCodecBuilder<SimpleBlockInteraction>(
         parentCodec = SimpleBlockInteraction.CODEC,
-        supplier = { delegatedInteraction as SimpleBlockInteraction }
+        supplier = { delegatedInteraction }
     )
 
     KytaleSimpleBlockInteractionBuilder(

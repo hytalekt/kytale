@@ -13,8 +13,10 @@ inline fun internalSimpleInstantInteraction(
 ): KytaleInteractionBundle<SimpleInstantInteraction> {
     val delegatedInteraction = createDelegatedSimpleInstantInteraction()
 
-    val codecBuilder = newCodecBuilder(
-        parentCodec = SimpleInstantInteraction.CODEC, supplier = { delegatedInteraction as SimpleInstantInteraction })
+    val codecBuilder = newCodecBuilder<SimpleInstantInteraction>(
+        parentCodec = SimpleInstantInteraction.CODEC,
+        supplier = { delegatedInteraction }
+    )
 
     KytaleSimpleInstantInteractionBuilder(
         codecBuilderScope = CodecBuilder(codecBuilder), delegate = delegatedInteraction
