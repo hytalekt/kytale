@@ -10,6 +10,14 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.cli
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 
+typealias InteractWithBlockExecutor = (
+    world: World, commandBuffer: CommandBuffer<EntityStore?>, type: InteractionType, context: InteractionContext, itemStack: ItemStack?, blockPos: Vector3i, cooldownHandler: CooldownHandler
+) -> Unit
+
+typealias SimulateInteractWithBlockExecutor = (
+    type: InteractionType, context: InteractionContext, itemStack: ItemStack?, world: World, blockPos: Vector3i
+) -> Unit
+
 open class KytaleSimpleBlockInteractionDelegate(
     var interactWithBlockExecutor: InteractWithBlockExecutor? = null,
     var simulateInteractWithBlockExecutor: SimulateInteractWithBlockExecutor? = null
@@ -23,8 +31,8 @@ open class KytaleSimpleBlockInteractionDelegate(
         p4: ItemStack?,
         p5: Vector3i,
         p6: CooldownHandler
-    ) = interactWithBlockExecutor?.invoke(p0, p1, p2, p3, p4, p5, p6) ?:
-        error("Uninitialized executor called, please provide an implementation using interactWithBlock {}")
+    ) = interactWithBlockExecutor?.invoke(p0, p1, p2, p3, p4, p5, p6)
+        ?: error("Uninitialized executor called, please provide an implementation using interactWithBlock {}")
 
     public override fun simulateInteractWithBlock(
         p0: InteractionType,
@@ -32,6 +40,6 @@ open class KytaleSimpleBlockInteractionDelegate(
         p2: ItemStack?,
         p3: World,
         p4: Vector3i
-    ) = simulateInteractWithBlockExecutor?.invoke(p0, p1, p2, p3, p4) ?:
-        error("Uninitialized executor called, please provide an implementation using simulateInteractWithBlock {}")
+    ) = simulateInteractWithBlockExecutor?.invoke(p0, p1, p2, p3, p4)
+        ?: error("Uninitialized executor called, please provide an implementation using simulateInteractWithBlock {}")
 }
