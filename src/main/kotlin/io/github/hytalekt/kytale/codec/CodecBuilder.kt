@@ -33,13 +33,13 @@ value class CodecBuilder<T>(
      * @param F The type of the field
      * @param codec The [KeyedCodec] that defines the field's key and codec
      * @param block A lambda to configure the field using [FieldBuilder]
-     *
-     * @return The built field builder
      */
     inline fun <F> addField(
         codec: KeyedCodec<F>,
         block: FieldBuilder<T, F>.() -> Unit,
-    ): BuilderField.FieldBuilder<T, F, BuilderCodec.Builder<T>> = FieldBuilder<T, F>().apply(block).build(inner, codec)
+    ) {
+        FieldBuilder<T, F>().apply(block).build(inner, codec).add()
+    }
 
     /**
      * Add a field to the codec with a string key and codec
@@ -48,14 +48,14 @@ value class CodecBuilder<T>(
      * @param field The field name/key
      * @param codec The [Codec] for encoding/decoding the field
      * @param block A lambda to configure the field using [FieldBuilder]
-     *
-     * @return The built field builder
      */
     inline fun <F> addField(
         field: String,
         codec: Codec<F>,
         block: FieldBuilder<T, F>.() -> Unit,
-    ): BuilderField.FieldBuilder<T, F, BuilderCodec.Builder<T>> = addField(KeyedCodec(field, codec), block)
+    ) {
+        addField(KeyedCodec(field, codec), block)
+    }
 
     /**
      * Defines an `afterDecode` callback that is invoked after the codec finishes decoding
