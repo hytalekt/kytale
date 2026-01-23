@@ -46,5 +46,14 @@ annotation class CodecDsl
  */
 inline fun <reified T> buildCodec(
     supplier: Supplier<T>,
+    parentCodec: BuilderCodec<in T>? = null,
     block: @CodecDsl CodecBuilder<T>.() -> Unit,
-): BuilderCodec<T?> = CodecBuilder<T>(BuilderCodec.builder(T::class.java, supplier)).apply(block).inner.build()
+): BuilderCodec<T?> = CodecBuilder<T>(newCodecBuilder(supplier, parentCodec)).apply(block).inner.build()
+
+inline fun <reified T> newCodecBuilder(
+    supplier: Supplier<T>,
+    parentCodec: BuilderCodec<in T>? = null,
+): BuilderCodec.Builder<T> =
+    parentCodec?.let { parentCodec ->
+        BuilderCodec.builder(T::class.java, supplier, parentCodec)
+    } ?: BuilderCodec.builder(T::class.java, supplier)
