@@ -1,9 +1,8 @@
 plugins {
-    id("buildlogic.common")
+    id("buildlogic.hytale")
 }
 
 dependencies {
-    compileOnly(files("../libs/HytaleServer.jar"))
     implementation(project(":"))
     implementation(project(":coroutines"))
     implementation(project(":serialization"))

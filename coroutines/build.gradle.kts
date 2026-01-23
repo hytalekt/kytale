@@ -1,9 +1,8 @@
 plugins {
-    id("buildlogic.common")
+    id("buildlogic.hytale")
 }
 
 dependencies {
-    compileOnly(files("../libs/HytaleServer.jar"))
     compileOnly(libs.kotlinx.coroutines.core)
     compileOnly(project(":"))
 

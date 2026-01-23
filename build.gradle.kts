@@ -1,16 +1,13 @@
 import org.jreleaser.model.Active
 
 plugins {
-    id("buildlogic.common")
+    id("buildlogic.hytale")
     id("org.jreleaser")
     id("org.jetbrains.dokka")
     `maven-publish`
 }
 
 dependencies {
-    // TODO: setup downloading of the server jar
-    compileOnly(files("./libs/HytaleServer.jar"))
-
     testImplementation(files("./libs/HytaleServer.jar"))
     testImplementation(libs.bundles.test)
 

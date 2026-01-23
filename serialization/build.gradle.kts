@@ -1,5 +1,5 @@
 plugins {
-    id("buildlogic.common")
+    id("buildlogic.hytale")
     kotlin("plugin.serialization")
 }
 
