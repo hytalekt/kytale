@@ -59,15 +59,14 @@ import kotlinx.serialization.modules.SerializersModule
 /**
  * Default SerializersModule for Kytale.
  *
- * This module provides kotlinx.serialization support for 30+ Hytale domain types including:
+ * This module provides kotlinx.serialization support for 27 Hytale domain types including:
  * - Vector types (Vector3d, Vector3i, Vector3f, Vector2d, Vector2i, Vector3l, Vector2l, Vector4d, Vec2f, Vec3f, Vec4f)
  * - Transform and Location types
  * - Math types (Quatf, Mat4f)
  * - Range types (IntRange, FloatRange)
  * - Shape types (Box, Box2D, Ellipsoid, Cylinder)
- * - Component types (MetaKey, WorldGenId, NetworkId, UUIDComponent)
+ * - Component types (WorldGenId, NetworkId, UUIDComponent)
  * - Player data types (PlayerDeathPositionData, PlayerRespawnPointData)
- * - Command types (RelativeFloat, RelativeInteger)
  * - Version types (Semver)
  *
  * Example usage:
@@ -76,12 +75,11 @@ import kotlinx.serialization.modules.SerializersModule
  *     serializersModule = KytaleSerializersModule
  * }
  * val vector = Vector3d(1.0, 2.0, 3.0)
- * val jsonString = json.encodeToString(Vector3dSerializer, vector)
+ * val jsonString = json.encodeToString(vector)
  * ```
  */
 val KytaleSerializersModule =
     SerializersModule {
-        // Vector types
         contextual(Vector3d::class, Vector3dSerializer)
         contextual(Vector3i::class, Vector3iSerializer)
         contextual(Vector3f::class, Vector3fSerializer)
@@ -96,29 +94,23 @@ val KytaleSerializersModule =
         contextual(Transform::class, TransformSerializer)
         contextual(Location::class, LocationSerializer)
 
-        // Math types
         contextual(Quatf::class, QuatfSerializer)
         contextual(Mat4f::class, Mat4fSerializer)
 
-        // Range types
         contextual(IntRange::class, IntRangeSerializer)
         contextual(FloatRange::class, FloatRangeSerializer)
 
-        // Shape types
         contextual(Box::class, BoxSerializer)
         contextual(Box2D::class, Box2DSerializer)
         contextual(Ellipsoid::class, EllipsoidSerializer)
         contextual(Cylinder::class, CylinderSerializer)
 
-        // Component types
         contextual(WorldGenId::class, WorldGenIdSerializer)
         contextual(NetworkId::class, NetworkIdSerializer)
         contextual(UUIDComponent::class, UUIDComponentSerializer)
 
-        // Player data types
         contextual(PlayerDeathPositionData::class, PlayerDeathPositionDataSerializer)
         contextual(PlayerRespawnPointData::class, PlayerRespawnPointDataSerializer)
 
-        // Version types
         contextual(Semver::class, SemverSerializer)
     }

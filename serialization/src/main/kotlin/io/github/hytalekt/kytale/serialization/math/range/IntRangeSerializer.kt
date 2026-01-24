@@ -3,44 +3,33 @@ package io.github.hytalekt.kytale.serialization.math.range
 import com.hypixel.hytale.math.range.IntRange
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.IntArraySerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.descriptors.element
-import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.encoding.decodeStructure
-import kotlinx.serialization.encoding.encodeStructure
 
+/**
+ * Serializer for IntRange that encodes as a two-element array.
+ *
+ * Example: `[10, 20]` instead of `{"inclusiveMin":10,"inclusiveMax":20}`
+ */
 object IntRangeSerializer : KSerializer<IntRange> {
-    override val descriptor: SerialDescriptor =
-        buildClassSerialDescriptor("IntRange") {
-            element<Int>("inclusiveMin")
-            element<Int>("inclusiveMax")
-        }
+    private val delegateSerializer = IntArraySerializer()
+    override val descriptor: SerialDescriptor = delegateSerializer.descriptor
 
     override fun serialize(
         encoder: Encoder,
         value: IntRange,
-    ) = encoder.encodeStructure(descriptor) {
-        encodeIntElement(descriptor, 0, value.inclusiveMin)
-        encodeIntElement(descriptor, 1, value.inclusiveMax)
+    ) {
+        val array = intArrayOf(value.inclusiveMin, value.inclusiveMax)
+        encoder.encodeSerializableValue(delegateSerializer, array)
     }
 
-    override fun deserialize(decoder: Decoder): IntRange =
-        decoder.decodeStructure(descriptor) {
-            var inclusiveMin = 0
-            var inclusiveMax = 0
-            while (true) {
-                when (val index = decodeElementIndex(descriptor)) {
-                    0 -> inclusiveMin = decodeIntElement(descriptor, 0)
-                    1 -> inclusiveMax = decodeIntElement(descriptor, 1)
-                    CompositeDecoder.DECODE_DONE -> break
-                    else -> error("Unexpected index: $index")
-                }
-            }
-            IntRange(inclusiveMin, inclusiveMax)
-        }
+    override fun deserialize(decoder: Decoder): IntRange {
+        val array = decoder.decodeSerializableValue(delegateSerializer)
+        require(array.size == 2) { "IntRange requires exactly 2 elements [min, max], got ${array.size}" }
+        return IntRange(array[0], array[1])
+    }
 }
 
 typealias KIntRange =
