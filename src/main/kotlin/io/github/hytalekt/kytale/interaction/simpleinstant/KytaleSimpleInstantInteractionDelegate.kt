@@ -6,12 +6,23 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHa
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction
 
 typealias FirstRunExecutor = (InteractionType, InteractionContext, CooldownHandler) -> Unit
+typealias SimulateFirstRunExecutor = (InteractionType, InteractionContext, CooldownHandler) -> Unit
 
 open class KytaleSimpleInstantInteractionDelegate(
     internal var firstRunExecutor: FirstRunExecutor? = null,
+    internal var simulateFirstRunExecutor: SimulateFirstRunExecutor? = null
 ) : SimpleInstantInteraction() {
     public override fun firstRun(
-        var1: InteractionType, var2: InteractionContext, var3: CooldownHandler
-    ) = firstRunExecutor?.invoke(var1, var2, var3)
+        type: InteractionType,
+        context: InteractionContext,
+        cooldownHandler: CooldownHandler
+    ) = firstRunExecutor?.invoke(type, context, cooldownHandler)
         ?: error("Uninitialized executor called, please provide an implementation using firstRun {}")
+
+    public override fun simulateFirstRun(
+        type: InteractionType,
+        context: InteractionContext,
+        cooldownHandler: CooldownHandler
+    ) = simulateFirstRunExecutor?.invoke(type, context, cooldownHandler)
+        ?: super.simulateFirstRun(type, context, cooldownHandler)
 }

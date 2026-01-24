@@ -15,4 +15,8 @@ class KytaleSimpleInstantInteractionBuilder(
     fun firstRun(block: FirstRunExecutor) {
         delegate.firstRunExecutor = block
     }
+
+    fun simulateFirstRun(block: SimulateFirstRunExecutor) {
+        delegate.simulateFirstRunExecutor = block
+    }
 }
