@@ -19,4 +19,9 @@ class KytaleSimpleBlockInteractionBuilder(
     fun simulateInteractWithBlock(block: SimulateInteractWithBlockExecutor) {
         delegate.simulateInteractWithBlockExecutor = block
     }
+
+    override fun validate() {
+        require(delegate.interactWithBlockExecutor != null) { "interactWithBlock executor is required" }
+        // simulateInteractWithBlock is optional, no need to validate
+    }
 }

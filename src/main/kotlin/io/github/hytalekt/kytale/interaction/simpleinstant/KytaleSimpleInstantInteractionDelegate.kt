@@ -10,7 +10,7 @@ typealias SimulateFirstRunExecutor = (InteractionType, InteractionContext, Coold
 
 open class KytaleSimpleInstantInteractionDelegate(
     internal var firstRunExecutor: FirstRunExecutor? = null,
-    internal var simulateFirstRunExecutor: SimulateFirstRunExecutor? = null
+    internal var simulateFirstRunExecutor: SimulateFirstRunExecutor? = null,
 ) : SimpleInstantInteraction() {
     public override fun firstRun(
         type: InteractionType,

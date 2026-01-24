@@ -18,14 +18,11 @@ inline fun internalSimpleInstantInteraction(
         supplier = { delegatedInteraction }
     )
 
-    KytaleSimpleInstantInteractionBuilder(
+    return KytaleSimpleInstantInteractionBuilder(
         codecBuilderScope = CodecBuilder(codecBuilder), delegate = delegatedInteraction
-    ).apply(block)
-
-    return KytaleInteractionBundle(
-        id = interactionId,
+    ).apply(block).build(
+        interactionId = interactionId,
         interactionClass = delegatedInteraction.javaClass,
-        codec = codecBuilder.build(),
     )
 }
 

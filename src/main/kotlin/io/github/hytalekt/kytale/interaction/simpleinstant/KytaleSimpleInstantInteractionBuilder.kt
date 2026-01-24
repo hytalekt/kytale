@@ -19,4 +19,9 @@ class KytaleSimpleInstantInteractionBuilder(
     fun simulateFirstRun(block: SimulateFirstRunExecutor) {
         delegate.simulateFirstRunExecutor = block
     }
+
+    override fun validate() {
+        require(delegate.firstRunExecutor != null) { "firstRun executor is required" }
+        // simulateFirstRun is optional, no need to validate
+    }
 }

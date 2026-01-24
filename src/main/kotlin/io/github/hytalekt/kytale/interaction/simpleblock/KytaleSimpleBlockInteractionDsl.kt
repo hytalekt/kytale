@@ -19,15 +19,12 @@ inline fun internalSimpleBlockInteraction(
         supplier = { delegatedInteraction }
     )
 
-    KytaleSimpleBlockInteractionBuilder(
+    return KytaleSimpleBlockInteractionBuilder(
         codecBuilderScope = CodecBuilder(codecBuilder),
         delegate = delegatedInteraction
-    ).apply(block)
-
-    return KytaleInteractionBundle(
-        id = interactionId,
+    ).apply(block).build(
+        interactionId = interactionId,
         interactionClass = delegatedInteraction.javaClass,
-        codec = codecBuilder.build(),
     )
 }
 

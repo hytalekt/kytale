@@ -20,7 +20,7 @@ typealias SimulateInteractWithBlockExecutor = (
 
 open class KytaleSimpleBlockInteractionDelegate(
     var interactWithBlockExecutor: InteractWithBlockExecutor? = null,
-    var simulateInteractWithBlockExecutor: SimulateInteractWithBlockExecutor? = null
+    var simulateInteractWithBlockExecutor: SimulateInteractWithBlockExecutor? = null,
 ) : SimpleBlockInteraction() {
 
     public override fun interactWithBlock(
@@ -41,5 +41,5 @@ open class KytaleSimpleBlockInteractionDelegate(
         p3: World,
         p4: Vector3i
     ) = simulateInteractWithBlockExecutor?.invoke(p0, p1, p2, p3, p4)
-        ?: error("Uninitialized executor called, please provide an implementation using simulateInteractWithBlock {}")
+        ?: run { /* No-op by default */ }
 }
