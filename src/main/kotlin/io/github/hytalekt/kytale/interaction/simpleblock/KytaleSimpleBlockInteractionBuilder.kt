@@ -4,14 +4,16 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.cli
 import io.github.hytalekt.kytale.interaction.KytaleInteractionDsl
 import io.github.hytalekt.kytale.interaction.interaction.KytaleInteractionBuilder
 import io.github.hytalekt.kytale.codec.CodecBuilder
+import io.github.hytalekt.kytale.interaction.KytaleInteractionBundle
 
 private typealias Interaction = SimpleBlockInteraction
 
 @KytaleInteractionDsl
 class KytaleSimpleBlockInteractionBuilder(
-    codecBuilderScope: CodecBuilder<Interaction>,
+    private val interactionId: String,
+    codecBuilder: CodecBuilder<Interaction>,
     private val delegate: KytaleSimpleBlockInteractionDelegate
-): KytaleInteractionBuilder<Interaction>(codecBuilderScope) {
+): KytaleInteractionBuilder<Interaction>(codecBuilder) {
     fun interactWithBlock(block: InteractWithBlockExecutor) {
         delegate.interactWithBlockExecutor = block
     }
@@ -20,8 +22,14 @@ class KytaleSimpleBlockInteractionBuilder(
         delegate.simulateInteractWithBlockExecutor = block
     }
 
-    override fun validate() {
-        require(delegate.interactWithBlockExecutor != null) { "interactWithBlock executor is required" }
+    fun build(): KytaleInteractionBundle<SimpleBlockInteraction> {
+        require(delegate.interactWithBlockExecutor != null) { "${interactionId}: interactWithBlock definition is required" }
         // simulateInteractWithBlock is optional, no need to validate
+
+        return KytaleInteractionBundle(
+            id = interactionId,
+            interactionClass = delegate.javaClass,
+            codec = codecBuilder.inner.build()
+        )
     }
 }

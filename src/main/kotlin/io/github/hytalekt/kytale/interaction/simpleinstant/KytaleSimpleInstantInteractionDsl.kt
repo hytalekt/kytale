@@ -4,26 +4,20 @@ package io.github.hytalekt.kytale.interaction.simpleinstant
 
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction
 import io.github.hytalekt.kytale.codec.CodecBuilder
-import io.github.hytalekt.kytale.interaction.KytaleInteractionBundle
 import io.github.hytalekt.kytale.interaction.KytaleInteractionDsl
 import io.github.hytalekt.kytale.codec.newCodecBuilder
 
 inline fun internalSimpleInstantInteraction(
     interactionId: String, block: @KytaleInteractionDsl KytaleSimpleInstantInteractionBuilder.() -> Unit
-): KytaleInteractionBundle<SimpleInstantInteraction> {
-    val delegatedInteraction = createDelegatedSimpleInstantInteraction()
-
-    val codecBuilder = newCodecBuilder<SimpleInstantInteraction>(
-        parentCodec = SimpleInstantInteraction.CODEC,
-        supplier = { delegatedInteraction }
-    )
-
-    return KytaleSimpleInstantInteractionBuilder(
-        codecBuilderScope = CodecBuilder(codecBuilder), delegate = delegatedInteraction
-    ).apply(block).build(
-        interactionId = interactionId,
-        interactionClass = delegatedInteraction.javaClass,
-    )
+) = with(createDelegatedSimpleInstantInteraction()) {
+    KytaleSimpleInstantInteractionBuilder(
+        interactionId,
+        codecBuilder = CodecBuilder(newCodecBuilder<SimpleInstantInteraction>(
+            parentCodec = SimpleInstantInteraction.CODEC,
+            supplier = { this }
+        )),
+        delegate = this
+    ).apply(block).build()
 }
 
 // Create a new anonymous class + anonymous object to delegate all calls.
