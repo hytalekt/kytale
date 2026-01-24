@@ -20,7 +20,8 @@ import io.github.hytalekt.kytale.interaction.simpleinstant.KytaleSimpleInstantIn
 annotation class KytaleInteractionDsl
 
 inline fun simpleInstantInteraction(
-    interactionId: String, block: @KytaleInteractionDsl KytaleSimpleInstantInteractionBuilder.() -> Unit
+    interactionId: String,
+    block: @KytaleInteractionDsl KytaleSimpleInstantInteractionBuilder.() -> Unit
 ) = with(object : KytaleSimpleInstantInteractionDelegate() {}) {
     KytaleSimpleInstantInteractionBuilder(
         interactionId,
