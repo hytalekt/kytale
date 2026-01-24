@@ -22,7 +22,7 @@ inline fun internalSimpleBlockInteraction(
     KytaleSimpleBlockInteractionBuilder(
         codecBuilderScope = CodecBuilder(codecBuilder),
         delegate = delegatedInteraction
-    ).apply { block() }
+    ).apply(block)
 
     return KytaleInteractionBundle(
         id = interactionId,
