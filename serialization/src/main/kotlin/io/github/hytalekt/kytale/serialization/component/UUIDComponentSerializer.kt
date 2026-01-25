@@ -31,6 +31,11 @@ object UUIDComponentSerializer : KSerializer<UUIDComponent> {
     }
 }
 
+/**
+ * Serializable typealias for [UUIDComponent].
+ *
+ * Serialized shape: `string` (UUID format)
+ */
 typealias KUUIDComponent =
     @Serializable(with = UUIDComponentSerializer::class)
     UUIDComponent

@@ -12,19 +12,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/**
- * Serializer for Mat4f that represents it as a 4x4 matrix (nested array).
- *
- * Serializes as:
- * ```json
- * [
- *   [m11, m12, m13, m14],
- *   [m21, m22, m23, m24],
- *   [m31, m32, m33, m34],
- *   [m41, m42, m43, m44]
- * ]
- * ```
- */
 object Mat4fSerializer : KSerializer<Mat4f> {
     private val delegateSerializer = ArraySerializer(FloatArraySerializer())
     override val descriptor: SerialDescriptor = delegateSerializer.descriptor
@@ -71,6 +58,11 @@ object Mat4fSerializer : KSerializer<Mat4f> {
     }
 }
 
+/**
+ * Serializable typealias for [Mat4f].
+ *
+ * Serialized shape: `float[4][4]` (row-major)
+ */
 typealias KMat4f =
     @Serializable(with = Mat4fSerializer::class)
     Mat4f

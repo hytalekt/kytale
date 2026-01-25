@@ -47,6 +47,11 @@ object EllipsoidSerializer : KSerializer<Ellipsoid> {
         }
 }
 
+/**
+ * Serializable typealias for [Ellipsoid].
+ *
+ * Serialized shape: `{ radiusX, radiusY, radiusZ: double }`
+ */
 typealias KEllipsoid =
     @Serializable(with = EllipsoidSerializer::class)
     Ellipsoid

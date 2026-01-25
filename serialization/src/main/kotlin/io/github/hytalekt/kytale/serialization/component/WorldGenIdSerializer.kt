@@ -30,6 +30,11 @@ object WorldGenIdSerializer : KSerializer<WorldGenId> {
     }
 }
 
+/**
+ * Serializable typealias for [WorldGenId].
+ *
+ * Serialized shape: `int`
+ */
 typealias KWorldGenId =
     @Serializable(with = WorldGenIdSerializer::class)
     WorldGenId

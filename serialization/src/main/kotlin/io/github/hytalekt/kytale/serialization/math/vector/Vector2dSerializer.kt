@@ -43,6 +43,11 @@ object Vector2dSerializer : KSerializer<Vector2d> {
         }
 }
 
+/**
+ * Serializable typealias for [Vector2d].
+ *
+ * Serialized shape: `{ x, y: double }`
+ */
 typealias KVector2d =
     @Serializable(with = Vector2dSerializer::class)
     Vector2d

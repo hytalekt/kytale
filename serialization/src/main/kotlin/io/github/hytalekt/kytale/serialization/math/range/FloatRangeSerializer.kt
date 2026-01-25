@@ -8,11 +8,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/**
- * Serializer for FloatRange that encodes as a two-element array.
- *
- * Example: `[0.5, 1.5]` instead of `{"inclusiveMin":0.5,"inclusiveMax":1.5}`
- */
 object FloatRangeSerializer : KSerializer<FloatRange> {
     private val delegateSerializer = FloatArraySerializer()
     override val descriptor: SerialDescriptor = delegateSerializer.descriptor
@@ -32,6 +27,11 @@ object FloatRangeSerializer : KSerializer<FloatRange> {
     }
 }
 
+/**
+ * Serializable typealias for [FloatRange].
+ *
+ * Serialized shape: `[min, max]: float[]`
+ */
 typealias KFloatRange =
     @Serializable(with = FloatRangeSerializer::class)
     FloatRange

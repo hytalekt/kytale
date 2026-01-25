@@ -8,11 +8,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/**
- * Serializer for IntRange that encodes as a two-element array.
- *
- * Example: `[10, 20]` instead of `{"inclusiveMin":10,"inclusiveMax":20}`
- */
 object IntRangeSerializer : KSerializer<IntRange> {
     private val delegateSerializer = IntArraySerializer()
     override val descriptor: SerialDescriptor = delegateSerializer.descriptor
@@ -32,6 +27,11 @@ object IntRangeSerializer : KSerializer<IntRange> {
     }
 }
 
+/**
+ * Serializable typealias for [IntRange].
+ *
+ * Serialized shape: `[min, max]: int[]`
+ */
 typealias KIntRange =
     @Serializable(with = IntRangeSerializer::class)
     IntRange

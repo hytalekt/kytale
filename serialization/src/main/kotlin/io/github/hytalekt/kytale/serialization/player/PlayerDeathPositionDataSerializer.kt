@@ -49,6 +49,11 @@ object PlayerDeathPositionDataSerializer : KSerializer<PlayerDeathPositionData> 
         }
 }
 
+/**
+ * Serializable typealias for [PlayerDeathPositionData].
+ *
+ * Serialized shape: `{ markerId: string, transform: Transform, day: int }`
+ */
 typealias KPlayerDeathPositionData =
     @Serializable(with = PlayerDeathPositionDataSerializer::class)
     PlayerDeathPositionData

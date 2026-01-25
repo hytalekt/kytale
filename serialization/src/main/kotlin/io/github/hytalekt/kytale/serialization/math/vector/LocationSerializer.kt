@@ -53,6 +53,11 @@ object LocationSerializer : KSerializer<Location> {
         }
 }
 
+/**
+ * Serializable typealias for [Location].
+ *
+ * Serialized shape: `{ world: string?, position: Vector3d, rotation: Vector3f }`
+ */
 typealias KLocation =
     @Serializable(with = LocationSerializer::class)
     Location

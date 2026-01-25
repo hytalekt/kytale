@@ -51,6 +51,11 @@ object QuatfSerializer : KSerializer<Quatf> {
         }
 }
 
+/**
+ * Serializable typealias for [Quatf].
+ *
+ * Serialized shape: `{ x, y, z, w: float }`
+ */
 typealias KQuatf =
     @Serializable(with = QuatfSerializer::class)
     Quatf

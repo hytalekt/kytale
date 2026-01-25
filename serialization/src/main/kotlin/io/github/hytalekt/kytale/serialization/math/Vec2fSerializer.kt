@@ -43,6 +43,11 @@ object Vec2fSerializer : KSerializer<Vec2f> {
         }
 }
 
+/**
+ * Serializable typealias for [Vec2f].
+ *
+ * Serialized shape: `{ x, y: float }`
+ */
 typealias KVec2f =
     @Serializable(with = Vec2fSerializer::class)
     Vec2f

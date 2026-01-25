@@ -44,6 +44,11 @@ object TransformSerializer : KSerializer<Transform> {
         }
 }
 
+/**
+ * Serializable typealias for [Transform].
+ *
+ * Serialized shape: `{ position: Vector3d, rotation: Vector3f }`
+ */
 typealias KTransform =
     @Serializable(with = TransformSerializer::class)
     Transform

@@ -44,6 +44,11 @@ object BoxSerializer : KSerializer<Box> {
         }
 }
 
+/**
+ * Serializable typealias for [Box].
+ *
+ * Serialized shape: `{ min: Vector3d, max: Vector3d }`
+ */
 typealias KBox =
     @Serializable(with = BoxSerializer::class)
     Box

@@ -47,6 +47,11 @@ object CylinderSerializer : KSerializer<Cylinder> {
         }
 }
 
+/**
+ * Serializable typealias for [Cylinder].
+ *
+ * Serialized shape: `{ height, radiusX, radiusZ: double }`
+ */
 typealias KCylinder =
     @Serializable(with = CylinderSerializer::class)
     Cylinder

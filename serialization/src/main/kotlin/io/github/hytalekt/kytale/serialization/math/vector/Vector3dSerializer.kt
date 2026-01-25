@@ -47,6 +47,11 @@ object Vector3dSerializer : KSerializer<Vector3d> {
         }
 }
 
+/**
+ * Serializable typealias for [Vector3d].
+ *
+ * Serialized shape: `{ x, y, z: double }`
+ */
 typealias KVector3d =
     @Serializable(with = Vector3dSerializer::class)
     Vector3d

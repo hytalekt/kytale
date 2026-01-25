@@ -98,6 +98,11 @@ object SemverSerializer : KSerializer<Semver> {
         }
 }
 
+/**
+ * Serializable typealias for [Semver].
+ *
+ * Serialized shape: `{ major, minor, patch: long, preRelease: string[]?, build: string? }`
+ */
 typealias KSemver =
     @Serializable(with = SemverSerializer::class)
     Semver

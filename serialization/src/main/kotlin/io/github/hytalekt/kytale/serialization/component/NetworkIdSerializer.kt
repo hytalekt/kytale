@@ -9,11 +9,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-/**
- * Serializer for NetworkId that encodes as a plain integer.
- *
- * Example: `123` instead of `{"id":123}`
- */
 object NetworkIdSerializer : KSerializer<NetworkId> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("NetworkId", PrimitiveKind.INT)
 
@@ -30,6 +25,11 @@ object NetworkIdSerializer : KSerializer<NetworkId> {
     }
 }
 
+/**
+ * Serializable typealias for [NetworkId].
+ *
+ * Serialized shape: `int`
+ */
 typealias KNetworkId =
     @Serializable(with = NetworkIdSerializer::class)
     NetworkId

@@ -51,6 +51,11 @@ object PlayerRespawnPointDataSerializer : KSerializer<PlayerRespawnPointData> {
         }
 }
 
+/**
+ * Serializable typealias for [PlayerRespawnPointData].
+ *
+ * Serialized shape: `{ blockPosition: Vector3i, respawnPosition: Vector3d, name: string }`
+ */
 typealias KPlayerRespawnPointData =
     @Serializable(with = PlayerRespawnPointDataSerializer::class)
     PlayerRespawnPointData
