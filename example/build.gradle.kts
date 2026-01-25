@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(libs.hytale)
+    implementation(libs.kotlinx.serialization.json)
     implementation(project(":"))
     implementation(project(":coroutines"))
     implementation(project(":serialization"))

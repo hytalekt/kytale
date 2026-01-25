@@ -25,6 +25,7 @@ class ExamplePlugin(
         commandRegistry.registerCommand(GamemodeCommand)
         commandRegistry.registerCommand(GiveCommand)
         commandRegistry.registerCommand(WorldCommand)
+        commandRegistry.registerCommand(WaypointCommand)
         
         eventRegistry.register<PlayerConnectEvent>(4) { event ->
             event.playerRef.sendMessage(text("You are connected to the server!"))

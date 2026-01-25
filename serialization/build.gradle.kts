@@ -7,6 +7,8 @@ dependencies {
     compileOnly(libs.hytale)
     api(libs.kotlinx.serialization.core)
 
+    testImplementation(libs.kotlinx.serialization.json)
+    testImplementation(libs.hytale)
     testImplementation(libs.bundles.test)
 }
 
