@@ -8,16 +8,20 @@ plugins {
 }
 
 dependencies {
-    // TODO: setup downloading of the server jar
-    compileOnly(files("./libs/HytaleServer.jar"))
+    compileOnly(libs.hytale)
 
-    testImplementation(files("./libs/HytaleServer.jar"))
+    testImplementation(libs.hytale)
     testImplementation(libs.bundles.test)
+
+    dokka(project(":"))
+    dokka(project(":serialization"))
+    dokka(project(":coroutines"))
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
     failOnNoDiscoveredTests = false
+    systemProperty("java.util.logging.manager", "com.hypixel.hytale.logger.backend.HytaleLogManager")
 }
 
 java { withSourcesJar() }

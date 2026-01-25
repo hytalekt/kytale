@@ -1,4 +1,6 @@
 [versions]
+hytale = "2026.01.23-6e2d4fc36"
+
 kotlin = "2.3.0"
 kotest = "6.0.5"
 kotlinx-coroutines = "1.10.2"
@@ -9,10 +11,12 @@ dokka = "2.1.0"
 jreleaser = "1.20.0"
 
 [libraries]
+hytale = { module = "com.hypixel.hytale:Server", version.ref = "hytale" }
+
 kotest-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 kotest-junit = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
-
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

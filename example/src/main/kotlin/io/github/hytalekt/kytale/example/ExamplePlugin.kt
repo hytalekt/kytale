@@ -14,11 +14,18 @@ import io.github.hytalekt.kytale.ext.register
 import io.github.hytalekt.kytale.ext.registerAsyncUnhandled
 import io.github.hytalekt.kytale.ext.times
 import io.github.hytalekt.kytale.message.text
+import io.github.hytalekt.kytale.example.command.*
 
 class ExamplePlugin(
     init: JavaPluginInit,
 ) : JavaPlugin(init) {
-    override fun start() {
+    override fun setup() {
+        commandRegistry.registerCommand(KitCommand)
+        commandRegistry.registerCommand(TeleportCommand)
+        commandRegistry.registerCommand(GamemodeCommand)
+        commandRegistry.registerCommand(GiveCommand)
+        commandRegistry.registerCommand(WorldCommand)
+        
         eventRegistry.register<PlayerConnectEvent>(4) { event ->
             event.playerRef.sendMessage(text("You are connected to the server!"))
         }
@@ -30,12 +37,14 @@ class ExamplePlugin(
             }
         }
 
-        logger.atInfoOrNull()?.log("Plugin started")
-
         val pos = Vector3d(1.0, 2.0, 3.0)
         val offset = Vector3d(10.0, 0.0, 10.0)
         val newPos = pos + offset
         val scaled = pos * 2.0
         val (x, y, z) = newPos
+    }
+    
+    override fun start() {
+        logger.atInfoOrNull()?.log("Plugin started")
     }
 }

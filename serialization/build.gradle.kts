@@ -4,9 +4,14 @@ plugins {
 }
 
 dependencies {
-    compileOnly(files("../libs/HytaleServer.jar"))
-    implementation(libs.kotlinx.serialization.json)
+    compileOnly(libs.hytale)
+    api(libs.kotlinx.serialization.core)
+
     testImplementation(libs.bundles.test)
+}
+
+dokka {
+    moduleName = "kytale-serialization"
 }
 
 tasks.withType<Test> {
