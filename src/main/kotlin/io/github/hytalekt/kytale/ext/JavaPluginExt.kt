@@ -4,4 +4,9 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Int
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.registry.CodecMapRegistry
 
+/**
+ * Returns the [Interaction] codec registry for this plugin
+ *
+ * @see com.hypixel.hytale.server.core.plugin.JavaPlugin.getCodecRegistry
+ */
 val JavaPlugin.interactionRegistry: CodecMapRegistry.Assets<Interaction, *> get() = this.getCodecRegistry(Interaction.CODEC)
