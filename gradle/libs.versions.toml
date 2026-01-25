@@ -1,5 +1,5 @@
 [versions]
-hytale = "2026.01.23-6e2d4fc36"
+hytale = "2026.01.24-6e2d4fc36"
 
 kotlin = "2.3.0"
 kotest = "6.0.5"
