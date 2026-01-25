@@ -13,5 +13,6 @@ class ExamplePlugin(
         commandRegistry.registerCommand(GamemodeCommand)
         commandRegistry.registerCommand(GiveCommand)
         commandRegistry.registerCommand(WorldCommand)
+        commandRegistry.registerCommand(WaypointCommand)
     }
 }

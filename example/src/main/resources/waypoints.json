@@ -1,0 +1,29 @@
+{
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "waypoints": [
+    {
+      "name": "spawn",
+      "position": { "x": 0.0, "y": 64.0, "z": 0.0 },
+      "rotation": { "x": 0.0, "y": 0.0, "z": 0.0 }
+    },
+    {
+      "name": "village",
+      "position": { "x": 128.5, "y": 72.0, "z": -256.5 },
+      "rotation": { "x": 0.0, "y": 45.0, "z": 0.0 }
+    },
+    {
+      "name": "dungeon",
+      "position": { "x": -512.0, "y": 32.0, "z": 512.0 },
+      "rotation": { "x": 0.0, "y": 180.0, "z": 0.0 }
+    },
+    {
+      "name": "tower",
+      "position": { "x": 1000.0, "y": 128.0, "z": 1000.0 },
+      "rotation": { "x": -15.0, "y": 90.0, "z": 0.0 }
+    }
+  ]
+}
